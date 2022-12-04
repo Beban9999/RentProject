@@ -168,9 +168,12 @@
 
         if(mysqli_num_rows($rez) > 0){
             while($red = mysqli_fetch_object($rez)){
-                echo "<div class = 'picdiv'>";
-                echo "<div class = 'delbtn' onclick='delCurrImg($red->id_pic)'></div>";
-                echo "<img src = '$red->name' width = '150' height = '150'>";
+                echo "<div class = 'picdiv card'>";
+                echo "<img src = '$red->name' class='card-img' style='height:10rem; width:10rem; z-index: 3;'>";
+                echo '<div class="card-img-overlay">';
+                echo '<i class="bi-x-square card text-white bg-danger mb-5 position-absolute bottom-100 end-0 fs-3" onclick="delCurrImg('.$red->id_pic.')"></i>';
+                //echo "<div class = 'delbtn' onclick='delCurrImg($red->id_pic)'></div>";
+                echo "</div>";
                 echo "</div>";
             }
         }
