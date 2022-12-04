@@ -222,7 +222,7 @@
                 $rezForPics = mysqli_query($db, $sqlPics );
                 if (mysqli_num_rows($rezForPics) > 0) {
                     if ($picture = mysqli_fetch_object($rezForPics)) {
-                        echo "<img class='card-img-top' src='$picture->pic_name' alt='' class='mainPic'>";
+                        echo "<img class='card-img-top' src='$picture->pic_name' alt='' style='height:18rem;'>";
                     } else {
                         echo "<img src='' alt='NO PICTURE' class='mainPic'>";
                     }
