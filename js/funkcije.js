@@ -54,41 +54,48 @@ $(document).ready(function(){
         if(address_name == "")
         {
             $("#odgDodaj").html("<div class='alert-danger'>Obavezno polje ("+mapProperties.get("address_name")+") nije uneto</div>");
-                notset+=1;
+                $notset+=1;
+                return false;
         }
         if(address_num == "")
         {
             $("#odgDodaj").html("<div class='alert-danger'>Obavezno polje ("+mapProperties.get("address_num")+") nije uneto</div>");
-                notset+=1;
+                $notset+=1;
+                return false;
         }
         if(county == "")
         {
             $("#odgDodaj").html("<div class='alert-danger'>Obavezno polje ("+mapProperties.get("county")+") nije uneto</div>");
-                notset+=1;
+                $notset+=1;
+                return false;
         }
         if(city == "")
         {
             $("#odgDodaj").html("<div class='alert-danger'>Obavezno polje ("+mapProperties.get("city")+") nije unet</div>");
          
-                notset+=1;
+                $notset+=1;
+                return false;
         }
         if(kategorija == 0)
         {
             $("#odgDodaj").html("<div class='alert-danger'>Obavezno polje ("+mapProperties.get("kategorija")+") nije uneto</div>");
-                notset+=1;
+                $notset+=1;
+                return false;
         }
         if(rent == 0)
         {
             $("#odgDodaj").html("<div class='alert-danger'>Obavezno polje ("+mapProperties.get("rent")+") nije uneto</div>");
-                notset+=1;
+                $notset+=1;
+                return false;
         }
         if(valuta == "0")
         {
             $("#odgDodaj").html("<div class='alert-danger'>Obavezno polje ("+mapProperties.get("valuta")+") nije uneto</div>");
-                notset+=1;
+                $notset+=1;
+                return false;
         }
         
-        if(notset != 0)
+        if($notset != 0)
         {
             return false;
         }
