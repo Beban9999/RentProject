@@ -217,7 +217,7 @@
 
         if(mysqli_num_rows($rez) > 0){
             while($red = mysqli_fetch_object($rez)){
-                echo "<div class='card' style='width: 26rem;'>";
+                echo "<div class='card' id = 'ves'  onclick = 'test($red->id)' style='width: 26rem;'>";
                 $sqlPics = "SELECT * FROM post_pictures WHERE deleted = 0 and post_id = $red->id LIMIT 1";
                 $rezForPics = mysqli_query($db, $sqlPics );
                 if (mysqli_num_rows($rezForPics) > 0) {
@@ -231,13 +231,12 @@
                 {
                     echo "<img src='' alt='NO PICTURE' class='mainPic'>";
                 }
-                
-                echo "<div id = 'ves'  onclick = 'test($red->id)'>";
+                echo "<div class='card-body'>";
                 echo '<h3 id="s" class="card-title">'.$red->address_name.'</h3>';
                 echo '<div class="card-subtitle mb-2 text-muted">'.$red->type.'</div>';
                 echo '<div class="card-text">'.$red->comment.'</div>';
                 echo '<div>'.$red->city." ".$red->county.'</div>';
-                echo '<div>'.$red->rent." ".$red->currency.'</div>';
+                echo '<div class="card text-white bg-success mb-3 position-absolute bottom-0 end-0 fs-3">'.$red->rent." ".$red->currency.'</div>';
                 //echo '<div>'.$red->details.'</div>';
                 echo '</div>';
                 echo '</div>';
