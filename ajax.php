@@ -220,7 +220,7 @@
 
         if(mysqli_num_rows($rez) > 0){
             while($red = mysqli_fetch_object($rez)){
-                echo "<div class='card' id = 'ves'  onclick = 'test($red->id)' style='width: 26rem;'>";
+                echo "<div class='card m-3' id = 'ves'  onclick = 'test($red->id)' style='width: 26rem;'>";
                 $sqlPics = "SELECT * FROM post_pictures WHERE deleted = 0 and post_id = $red->id LIMIT 1";
                 $rezForPics = mysqli_query($db, $sqlPics );
                 if (mysqli_num_rows($rezForPics) > 0) {
