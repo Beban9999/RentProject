@@ -40,8 +40,10 @@ if (isset($_GET['odjava'])) {
         loged();
     ?>
     <div id='odgPrijava'></div>
-    <hr>
-    <div id='vesti'></div>
+    <!-- <hr> -->
+    <div class="container-fluid">
+        <div id='vesti' class='row'></div>
+    </div>
     <script>
         var input = document.getElementById("pass");
         input.addEventListener("keypress", function(event) {
