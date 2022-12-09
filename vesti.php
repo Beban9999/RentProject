@@ -35,19 +35,6 @@ mysqli_query($db, "SET NAMES utf8");
     .picdiv {
         display: inline;
     }
-
-    /* .delbtn {
-        position: relative;
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        background-color: red;
-    } */
-
-    /* #prev_img{
-        height: 40%;
-        overflow-y: scroll;
-    } */
 </style>
 
 <body>
