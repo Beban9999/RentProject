@@ -5,7 +5,7 @@ if (!prijavljen()) {
     echo "Morate biti prijavljeni! <a href = 'pocetna.php'>Prijavite se</a>";
     exit();
 }
-$db = mysqli_connect("localhost", "root", "", "pva_kol2_2021");
+$db = mysqli_connect("localhost", "root", "", "renta");
 
 if (!$db) {
     echo "Greska sa konekcijom!" . mysqli_connect_errno();
@@ -25,9 +25,11 @@ mysqli_query($db, "SET NAMES utf8");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vesti</title>
-    <link rel="stylesheet" href="mdb/css/mdb.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- Nice placeholders -->
+    <link rel="stylesheet" href="test.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    
     <!-- Bootstrap Font Icon CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 </head>
@@ -42,8 +44,6 @@ mysqli_query($db, "SET NAMES utf8");
     <?php
     loged();
     ?>
-
-
     <div class="container">
         <h3 class="text-center m-3">Nova objava</h3>
         <div class="row m-4">
@@ -83,7 +83,7 @@ mysqli_query($db, "SET NAMES utf8");
 
                     if (mysqli_num_rows($rez) > 0) {
                         while ($red = mysqli_fetch_object($rez)) {
-                            echo "<option value=$red->id>$red->naziv</option>";
+                            echo "<option value=$red->id_type>$red->type_name</option>";
                         }
                     }
 

@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once("f.php");
-$db = mysqli_connect("localhost", "root", "", "pva_kol2_2021");
+$db = mysqli_connect("localhost", "root", "", "renta");
 
 if (!$db) {
     echo "Greska sa konekcijom!" . mysqli_connect_errno();
@@ -37,7 +37,9 @@ mysqli_query($db, "SET NAMES utf8");
 
     <?php
     $curr =  $_GET['vest'];
-    $sql = "SELECT * FROM post WHERE deleted = 0 and id = $curr ORDER BY id DESC";
+    $sql = "SELECT * FROM post 
+    JOIN kategorije k on k.id_type = post.type
+    WHERE deleted = 0 and id = $curr ORDER BY id DESC";
     $rez = mysqli_query($db, $sql);
 
 
@@ -48,7 +50,7 @@ mysqli_query($db, "SET NAMES utf8");
     echo "<br><br>";
     echo "<h3 id='s'>$red->address_name</h3>";
     echo "<div>$red->comment</div>";
-    echo "<div>$red->type</div>";
+    echo "<div>$red->type_name</div>";
     echo "<div>$red->city $red->county</div>";
     echo "<div>$red->rent $red->currency</div>";
     echo "<div>$red->details</div>";

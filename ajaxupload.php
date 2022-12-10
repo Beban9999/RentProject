@@ -5,7 +5,7 @@ if (!prijavljen()) {
     echo "Morate biti prijavljeni! <a href = 'pocetna.php'>Prijavite se</a>";
     exit();
 }
-$db = mysqli_connect("localhost", "root", "", "pva_kol2_2021");
+$db = mysqli_connect("localhost", "root", "", "renta");
 
 if (!$db) {
     echo "Greska sa konekcijom!" . mysqli_connect_errno();

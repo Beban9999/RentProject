@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    $db = mysqli_connect("localhost", "root", "", "pva_kol2_2021");
+    $db = mysqli_connect("localhost", "root", "", "renta");
 
     if(!$db){
         echo "Greska sa konekcijom!". mysqli_connect_errno();
@@ -45,6 +45,8 @@
         '$kategorija','$comment','$deposit','$rent','$valuta',	
         '$start_date','$end_date','$details', '$currUser')";
         $rez = mysqli_query($db, $sql);
+
+        
 
         
         if(mysqli_affected_rows($db) > 0){
@@ -161,6 +163,7 @@
         }
 
     }
+    
     if($f == "pop_img")
     {
         $sql = "SELECT * FROM pictures WHERE deleted = false";
@@ -205,7 +208,10 @@
     if($f == "obrisi"){
         $id = $_POST['id'];
         $sql = "UPDATE post SET deleted = 1 WHERE id = '$id'";
-        $rez = mysqli_query($db, $sql);
+        $stmt = $db->prepare('UPDATE post SET deleted = 1 WHERE id = ?');
+        $stmt->bind_param('s', $id);
+        $stmt->execute();
+        $rez = $stmt->get_result();
 
         if(mysqli_affected_rows($db) > 0){
             echo "Obrisano postova: ". mysqli_affected_rows($db);
@@ -215,7 +221,10 @@
         }
     }
     if($f == "popVesti"){
-        $sql = "SELECT * FROM post as p JOIN currency c on p.currency = c.id_curr WHERE p.deleted = 0 ORDER BY p.id DESC";
+        $sql = "SELECT * FROM post as p 
+        JOIN currency c on p.currency = c.id_curr 
+        JOIN kategorije k on p.type = k.id_type
+        WHERE p.deleted = 0 ORDER BY p.id DESC";
         $rez = mysqli_query($db, $sql);
 
         if(mysqli_num_rows($rez) > 0){
@@ -236,7 +245,7 @@
                 }
                 echo "<div class='card-body'>";
                 echo '<h3 id="s" class="card-title">'.$red->address_name.'</h3>';
-                echo '<div class="card-subtitle mb-2 text-muted">'.$red->type.'</div>';
+                echo '<div class="card-subtitle mb-2 text-muted">'.$red->type_name.'</div>';
                 echo '<div class="card-text">'.$red->comment.'</div>';
                 echo '<div>'.$red->city." ".$red->county.'</div>';
                 echo '<div class="card text-white bg-success mb-3 position-absolute bottom-0 end-0 fs-3">'.$red->rent." ".$red->currency.'</div>';
@@ -250,8 +259,13 @@
         $korIme = $_POST['korIme'];
         $pass = $_POST['pass'];
 
-        $sql = "SELECT * FROM korisnici WHERE korime = '$korIme'";
-        $rez = mysqli_query($db, $sql);
+        //$sql = "SELECT * FROM korisnici WHERE korime = '$korIme'";
+        $stmt = $db->prepare("SELECT * FROM korisnici WHERE korime = ?");
+        $stmt->bind_param('s', $korIme);
+        $stmt->execute();
+
+        $rez = $stmt->get_result();
+        //$rez = mysqli_query($db, $sql);
 
         if(mysqli_num_rows($rez) > 0){
             $red = mysqli_fetch_object($rez);

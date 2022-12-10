@@ -44,6 +44,7 @@ if (isset($_GET['odjava'])) {
     <div class="container-fluid">
         <div id='vesti' class='row'></div>
     </div>
+    
     <script>
         var input = document.getElementById("pass");
         input.addEventListener("keypress", function(event) {
