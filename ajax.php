@@ -39,11 +39,11 @@
         $sql = "INSERT INTO post 
         (address_name, address_number, county, city, 
         type, comment,deposit, rent, currency, 
-        start_date, end_date, details, user) 
+        start_date, end_date, details, user, created_date) 
         
         VALUES ('$address_name','$address_num',	'$county','$city',	
         '$kategorija','$comment','$deposit','$rent','$valuta',	
-        '$start_date','$end_date','$details', '$currUser')";
+        '$start_date','$end_date','$details', '$currUser',now())";
         $rez = mysqli_query($db, $sql);
 
         
