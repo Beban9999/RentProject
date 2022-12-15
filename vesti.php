@@ -89,72 +89,33 @@ mysqli_query($db, "SET NAMES utf8");
                 </select>
                 <h4 class="text-center m-3">Detalji</h4>
                 <div id='details' name='details' class="row m-4">
-                    <div class="col">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="0dlt" id="0dlt">
-                            <label class="form-check-label" for="0dlt">
-                                Kupatilo
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="1dlt" id="1dlt">
-                            <label class="form-check-label" for="1dlt">
-                                Kuhinja
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="2dlt" id="2dlt">
-                            <label class="form-check-label" for="2dlt">
-                                Dnevna soba
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="3dlt" id="3dlt">
-                            <label class="form-check-label" for="3dlt">
-                                Internet
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="4dlt" id="4dlt">
-                            <label class="form-check-label" for="4dlt">
-                                Klima
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="" id="10dlt">
-                            <label class="form-check-label" for="10dlt">
-                                TEST
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="" id="11dlt">
-                            <label class="form-check-label" for="11dlt">
-                                TEST
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="" id="12dlt">
-                            <label class="form-check-label" for="12dlt">
-                                TEST
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="" id="13dlt">
-                            <label class="form-check-label" for="13dlt">
-                                TEST
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="" id="14dlt">
-                            <label class="form-check-label" for="14dlt">
-                                TEST
-                            </label>
-                        </div>
-                    </div>
-
+                    <?php
+                         $sql = "SELECT * FROM details";
+                         $rez = mysqli_query($db, $sql);
+                         $details = array();
+                         echo '<div class="col">';
+                         $countRows = 0;
+                         if (mysqli_num_rows($rez) > 0) {
+                            while ($red = mysqli_fetch_object($rez)) {
+                                $details[$red->id_detail] = $red->detail_name;
+                                $indexDetail = $red->id_detail-1;
+                                echo '<div class="form-check">
+                                        <input type="checkbox" class="form-check-input" name="'.$indexDetail.'dlt" id="'.$indexDetail.'dlt">
+                                        <label class="form-check-label" for="'.$indexDetail.'dlt">
+                                            '.$red->detail_name.'
+                                        </label>
+                                    </div>';
+                                    $countRows++;
+                                    if($countRows == 5){
+                                        echo '</div>
+                                        <div class="col">';
+                                        $countRows = 0;
+                                    }
+                            }
+                        }
+                        echo '</div>';
+                    ?>
+    
                 </div>
             </div>
             <div class="col">

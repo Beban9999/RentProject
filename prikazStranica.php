@@ -59,7 +59,23 @@ mysqli_query($db, "SET NAMES utf8");
     echo "<div>$red->type_name</div>";
     echo "<div>$red->city $red->county</div>";
     echo "<div>$red->rent $red->name</div>";
-    echo "<div>$red->details</div>";
+    //echo "<div>$red->details</div>";
+    $sql = "SELECT * FROM details";
+    $rez = mysqli_query($db, $sql);
+    $details = array();
+    $countRows = mysqli_num_rows($rez);
+    $shifter = 0;
+    while ($redDet = mysqli_fetch_object($rez)) {
+
+        if((1 << $shifter) & $red->details)
+        {
+            echo '<p><i class="bi bi-check2-circle"></i>  '.$redDet->detail_name.'</p>';
+        }
+        $shifter++;
+    }
+
+
+
     if(!$red->start_date[0] == "0")
     {
         echo "<div>START DATUM: $red->start_date</div>";
