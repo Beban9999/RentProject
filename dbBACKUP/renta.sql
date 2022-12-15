@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2022 at 09:20 PM
+-- Generation Time: Dec 15, 2022 at 09:42 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -50,6 +50,36 @@ CREATE TABLE `currency` (
 
 INSERT INTO `currency` (`id_curr`, `currency`, `name`) VALUES
 (1, 'Euro', 'EUR');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `details`
+--
+
+CREATE TABLE `details` (
+  `id_detail` int(10) UNSIGNED NOT NULL,
+  `detail_name` varchar(80) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `details`
+--
+
+INSERT INTO `details` (`id_detail`, `detail_name`) VALUES
+(1, 'Kupatilo'),
+(2, 'Kuhinja'),
+(3, 'Dnevna soba'),
+(4, 'Internet'),
+(5, 'Klima'),
+(6, 'Parking mesto'),
+(7, 'TEST7'),
+(8, 'TEST8'),
+(9, 'TEST9'),
+(10, 'TEST10'),
+(11, 'TEST11'),
+(12, 'TEST12'),
+(13, 'TEST13');
 
 -- --------------------------------------------------------
 
@@ -107,14 +137,6 @@ CREATE TABLE `pictures` (
   `deleted` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `pictures`
---
-
-INSERT INTO `pictures` (`id_pic`, `name`, `user_id`, `deleted`) VALUES
-(15, 'uploads/56844screenshot_2.png', 1, 1),
-(16, 'uploads/266259931716.png', 1, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -145,7 +167,8 @@ CREATE TABLE `post` (
 --
 
 INSERT INTO `post` (`id`, `address_name`, `address_number`, `county`, `city`, `type`, `comment`, `deposit`, `rent`, `currency`, `start_date`, `end_date`, `details`, `user`, `created_date`, `deleted`) VALUES
-(4, 'Mestroviceva', '23', 'Vozdovac', 'Beograd', 4, 'Nesina garsonjera', 1000, 500, 1, '2022-12-15', '2022-12-25', 14, 1, '2022-12-12', 0);
+(4, 'Mestroviceva', '23', 'Vozdovac', 'Beograd', 4, 'Nesina garsonjera', 1000, 500, 1, '2022-12-15', '2022-12-25', 142, 1, '2022-12-12', 0),
+(13, 'Test', '123', '123123', '123', 3, '123', 0, 123, 1, '0000-00-00', '0000-00-00', 4046, 1, '2022-12-15', 0);
 
 --
 -- Triggers `post`
@@ -182,8 +205,7 @@ INSERT INTO `post_pictures` (`id_picture`, `pic_name`, `post_id`, `deleted`) VAL
 (5, 'uploads/99548screenshot_5.png', 3, 0),
 (6, 'uploads/450846screenshot_5.png', 4, 0),
 (7, 'uploads/333530931716.png', 4, 0),
-(10, 'uploads/56844screenshot_2.png', 6, 1),
-(11, 'uploads/266259931716.png', 6, 1);
+(15, 'uploads/114389screenshot_4.png', 13, 0);
 
 --
 -- Indexes for dumped tables
@@ -194,6 +216,12 @@ INSERT INTO `post_pictures` (`id_picture`, `pic_name`, `post_id`, `deleted`) VAL
 --
 ALTER TABLE `currency`
   ADD PRIMARY KEY (`id_curr`);
+
+--
+-- Indexes for table `details`
+--
+ALTER TABLE `details`
+  ADD PRIMARY KEY (`id_detail`);
 
 --
 -- Indexes for table `kategorije`
@@ -241,6 +269,12 @@ ALTER TABLE `currency`
   MODIFY `id_curr` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `details`
+--
+ALTER TABLE `details`
+  MODIFY `id_detail` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
 -- AUTO_INCREMENT for table `kategorije`
 --
 ALTER TABLE `kategorije`
@@ -256,19 +290,19 @@ ALTER TABLE `korisnici`
 -- AUTO_INCREMENT for table `pictures`
 --
 ALTER TABLE `pictures`
-  MODIFY `id_pic` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_pic` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `post_pictures`
 --
 ALTER TABLE `post_pictures`
-  MODIFY `id_picture` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_picture` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
