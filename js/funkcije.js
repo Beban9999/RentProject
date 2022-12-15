@@ -42,7 +42,7 @@ $(document).ready(function(){
 
         let details = 0;
         //DETALJI
-        for(i = 0; i < 5; i++)
+        for(i = 0; i < 25; i++) //test 25???
         {
             let currDtl = $("#"+i+"dlt").is(":checked");
             if(currDtl == true) details |= 1 << i;
